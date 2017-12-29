@@ -9,7 +9,7 @@ If you prefer a comprehensive starter, recommand use the facebook [create-create
 
    Start webpack server in development mode.
 
-   Should host in [http://localhost:8080/](http://localhost:8080/), trying port `8081` if port `8080` is occupied
+   Should host on [http://localhost:8080/](http://localhost:8080/). If port `8080` is occupied, try port `8081`.
 2. `npm run build`
 
-   Build the react app for production (or compile into static) under `public` folder
+   Build the react app for production (compile application into static) under `public` folder.
