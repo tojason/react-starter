@@ -1,3 +1,9 @@
+# React Starter
+My manual webpack setup for React JS
+
+If you prefer a comprehensive starter, recommand use the facebook [create-create-app](https://github.com/facebookincubator/create-react-app)
+
+
 ## Available Scripts
 1. `npm run dev`
 
