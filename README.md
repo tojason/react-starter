@@ -17,3 +17,9 @@ If you prefer a comprehensive starter, recommand use the facebook [create-create
 2. `npm run build`
 
    Build the react app for production (compile application into static) under `public` folder.
+
+## Push this directory to your repository
+In the command line: <br>
+`git remote set-url origin [your repository url]`<br>
+`git add -A`<br>
+`git push origin master`
