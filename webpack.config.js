@@ -17,31 +17,49 @@ const config = {
 
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: './public/',
   },
 
   context: path.join(__dirname, 'src'),
 
   module : {
-    loaders : [
+    rules: [
       {
         test : /\.jsx?/,
         exclude : [/node_modules/, /bower_components/],
         include : APP_DIR,
-        loader : 'babel-loader',
-        query: {
-          presets: ['es2015']
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["env"]
+          }
         }
       },
       {
         test: /\.scss$/,
+        // the order of the following loaders is important
         loaders: ['style-loader', 'css-loader?-url', 'postcss-loader', 'sass-loader']
       },
       {
         test: /\.css$/,
+        // the order of the following loaders is important
         loaders: ['style-loader', 'css-loader?-url', 'postcss-loader']
       }
     ]
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          enforce: true,
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
+    }
   },
 
   plugins: [
@@ -51,13 +69,12 @@ const config = {
     ], {
       copyUnmodified: false,
       debug: 'debug'
-    }),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity,
-      filename: 'vendor.bundle.js'
     })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'vendor',
+    //   minChunks: Infinity,
+    //   filename: 'vendor.bundle.js'
+    // })
   ]
 
 };
