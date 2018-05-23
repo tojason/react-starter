@@ -1,6 +1,6 @@
 # React Starter
 My manual webpack setup for React JS.<br>
-If you prefer a comprehensive starter, recommand use the facebook [create-create-app](https://github.com/facebookincubator/create-react-app).
+If you prefer a comprehensive starter, recommand use the facebook [create-react-app](https://github.com/facebookincubator/create-react-app).
 
 ## Add More Module(s)
 * Module runs during webpack server or development server<br>
