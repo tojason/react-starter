@@ -3,13 +3,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const copy = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
 
 const config = {
 
+  // split a large bundle file into 2 chunks
   entry: {
     app: [APP_DIR + '/index.jsx'],
     vendor: ['react', 'react-dom', 'react-router', 'react-router-dom']
@@ -17,8 +20,21 @@ const config = {
 
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js',
-    publicPath: './public/',
+    filename: '[name].bundle.js',
+  },
+
+  // configure webpack dev server, with hot-reloading enable
+  devServer: {
+    // url is host under 0.0.0.0:port, it allows other people to visit this website from
+    // other computers
+    inline: true,
+    port: 3000,
+    hot: true, // live updating css without a refresh on the webpack
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    }
   },
 
   context: path.join(__dirname, 'src'),
@@ -63,18 +79,23 @@ const config = {
   },
 
   plugins: [
-    new copy([
+    new CopyWebpackPlugin([
       {from: APP_DIR + '/html/', to: BUILD_DIR},
       {from: APP_DIR + '/assets/', to: BUILD_DIR + '/assets/'}
     ], {
       copyUnmodified: false,
       debug: 'debug'
-    })
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'vendor',
-    //   minChunks: Infinity,
-    //   filename: 'vendor.bundle.js'
-    // })
+    }),
+    new HTMLWebpackPlugin({
+      template: './html/index.html',
+      inject: 'body',
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css"
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 
 };
