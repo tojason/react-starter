@@ -28,7 +28,7 @@ const config = {
     // url is host under 0.0.0.0:port, it allows other people to visit this website from
     // other computers
     inline: true,
-    port: 3000,
+    port: 5000,
     hot: true, // live updating css without a refresh on the webpack
     headers: {
       "Access-Control-Allow-Origin": "*",
