@@ -33,7 +33,7 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
-    "acorn": "^6.0.6",
+    "acorn": "^6.4.1",
     "ajv": "^6.7.0",
     "axios": "^0.18.0",
     "normalize.css": "^8.0.1",
