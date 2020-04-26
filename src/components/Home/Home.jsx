@@ -6,7 +6,6 @@ import {
   Segment,
   Label,
 } from 'semantic-ui-react';
-import socketClient from 'socket.io-client';
 
 import styles from './Home.scss';
 
